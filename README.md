@@ -6,7 +6,7 @@ ________________________________________________________________________________
 
 _______________________________________________________________________________________________________________________
 ### Contents:
-1-index.html : have my name , specialization and skills section.
-2-SIMPLE.css: to style HTML file.
+######1-index.html : have my name , specialization and skills section.
+######2-SIMPLE.css: to style HTML file.
 
 
