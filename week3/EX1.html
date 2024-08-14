@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  
+    <title>Student Exercise Form</title>
+</head>
+<body>
+    <h1>Student Exercise Form</h1>
+    <form>
+        <!-- Personal Information -->
+       
+            <h3>Personal Information</h3>
+            <label>Name:</label>
+            <input type="text" id="name" name="name">
+            <br>
+            <br>
+
+            <labe>Email:</label>
+            <input type="email" id="email" name="email">
+            <br>
+            <br>
+
+            <label>Date of Birth:</label>
+            <input type="date" id="date" name="date"><br><br>
+
+            <label>Phone Number:</label>
+            <input type="tel" id="phone" name="phone"><br><br>
+
+            <label>Personal Website:</label>
+            <input type="url" id="url" name="url">
+            <br>
+            <br>
+        
+
+        <!-- Preferences -->
+      
+            <h3>Preferences</h3>
+
+            <label>Gender:</label>
+            <input type="radio" id="male" value="male"> Male
+            <input type="radio" id="female"  value="female"> Female<br><br>
+
+            <label>Profile Picture:</label>
+            <input type="file" id="Picture" name="Picture">
+            <br>
+            <br>
+
+            <label>Favorite Subjects:</label><br>
+            <input type="checkbox" id="math"  value="math"> Math<br>
+            <input type="checkbox" id="science" value="science"> Science<br>
+            <input type="checkbox" id="history"  value="history"> History<br><br>
+
+            <label>Grade:</label>
+            <select id="grade" name="grade">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </select>
+            <br>
+            <br>
+
+            <label>Favorite Color:</label>
+            <input type="color" id="color" name="color" value="#ABF778">
+            <br>
+            <br>
+
+            <label>Favorite Browser:</label>
+            <input type="text" id="browser" name="browser">
+            <br>
+            <br>
+     
+
+        <!-- Additional Information -->
+        
+            <h3>Additional Information</h3>
+            <label>Comments:</label><br>
+            <textarea id="comments" name="comments" rows="10" cols="50" placeholder="Type away! We're all ears (and eyes)!"></textarea>
+            <br>
+    
+        <!-- Submit and Reset Buttons -->
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>
