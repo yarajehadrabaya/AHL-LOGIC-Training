@@ -1,2 +1,6 @@
-# AHL-LOGIC-Training
-AHL LOGIC Training Homework and projcet
+# Project Name:  Github Homework .
+_______________________________________________________________________________________________________________________
+
+### Authors:
+* 	👩💻Yara Jehad Rabaya
+
