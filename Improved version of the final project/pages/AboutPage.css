@@ -1,0 +1,144 @@
+/* AboutPage.css */
+
+/* قسم المحتوى */
+.about-page {
+    display: flex; /* استخدام flexbox لجعل الصورة والنص جنبًا إلى جنب */
+    justify-content: center; /* محاذاة المحتوى في الوسط */
+    align-items: center; /* محاذاة العناصر في الوسط عموديًا */
+    padding: 20px; /* إضافة مسافة داخلية */
+    background-color: #f4f4f4; /* خلفية الصفحة */
+    height: 100vh; /* جعل الصفحة تأخذ ارتفاع كامل الشاشة */
+}
+
+.about-section {
+    display: flex; /* عرض الصورة والنص جنبًا إلى جنب */
+    align-items: center; /* محاذاة العناصر في الوسط عموديًا */
+}
+
+.image-container {
+    width: 500px; /* عرض الصورة حسب الحاجة */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    margin-right: 20px; /* مسافة بين الصورة والنص */
+}
+
+.profile-img {
+    width: 100%; /* عرض الصورة بالكامل */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    object-fit: cover; /* عرض الصورة بما يتناسب مع الحاوية */
+    border: none; /* إزالة أي حدود حول الصورة */
+}
+
+.text-container {
+    flex: 1; /* يجعل نص المحتوى يأخذ المساحة المتبقية */
+}
+
+h1 {
+    font-size: 48px; /* حجم عنوان الصفحة */
+    font-weight: 700; /* سمك الخط */
+}
+
+.divider {
+    width: 60px; /* عرض الخط الفاصل */
+    height: 4px; /* ارتفاع الخط الفاصل */
+    background-color: #f9a8d4; /* لون الخط الفاصل */
+    margin: 10px 0; /* مسافة حول الخط الفاصل */
+}
+
+p {
+    font-size: 16px; /* حجم النص */
+    line-height: 1.6; /* ارتفاع السطر */
+    color: #555; /* لون النص */
+}
+
+.contact-info {
+    display: flex; /* عرض المعلومات بشكل أفقي */
+    align-items: center; /* محاذاة العناصر في الوسط عموديًا */
+    margin-top: 20px; /* مسافة فوق المعلومات */
+    font-weight: bold; /* سمك الخط */
+}
+
+.phone-icon {
+    font-size: 24px; /* حجم رمز الهاتف */
+    color: #f9a8d4; /* لون الرمز */
+    margin-right: 10px; /* مسافة بين الرمز والرقم */
+}
+
+.phone-number {
+    font-size: 20px; /* حجم الرقم */
+    color: #555; /* لون الرقم */
+}
+/* AboutPage.css */
+
+/* قسم المحتوى */
+.about-page {
+    display: flex; /* استخدام flexbox لجعل الصورة والنص جنبًا إلى جنب */
+    justify-content: center; /* محاذاة المحتوى في الوسط أفقياً */
+    align-items: center; /* محاذاة العناصر في الوسط عموديًا */
+    padding: 20px; /* إضافة مسافة داخلية */
+    background-color: #f4f4f4; /* خلفية الصفحة */
+    height: 100vh; /* جعل الصفحة تأخذ ارتفاع كامل الشاشة */
+}
+
+.about-section {
+    display: flex; /* عرض الصورة والنص جنبًا إلى جنب */
+    align-items: center; /* محاذاة العناصر في الوسط عموديًا */
+    max-width: 1200px; /* تحديد الحد الأقصى للعرض */
+    width: 100%; /* العرض الكامل داخل الحاوية */
+    margin: 0 auto; /* محاذاة العنصر في الوسط */
+}
+
+.image-container {
+    width: 500px; /* عرض الصورة حسب الحاجة */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    margin-right: 20px; /* مسافة بين الصورة والنص */
+}
+
+.profile-img {
+    width: 100%; /* عرض الصورة بالكامل */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+    object-fit: cover; /* عرض الصورة بما يتناسب مع الحاوية */
+    border: none; /* إزالة أي حدود حول الصورة */
+}
+
+.text-container {
+    flex: 1; /* يجعل نص المحتوى يأخذ المساحة المتبقية */
+}
+
+h1 {
+    font-size: 48px; /* حجم عنوان الصفحة */
+    font-weight: 700; /* سمك الخط */
+    text-align: center; /* محاذاة العنوان في الوسط */
+}
+
+.divider {
+    width: 60px; /* عرض الخط الفاصل */
+    height: 4px; /* ارتفاع الخط الفاصل */
+    background-color:#ae382c; /* لون الخط الفاصل */
+    margin: 10px auto; /* محاذاة الخط الفاصل في الوسط */
+}
+
+p {
+    font-size: 16px; /* حجم النص */
+    line-height: 1.6; /* ارتفاع السطر */
+    color: #555; /* لون النص */
+    text-align: center; /* محاذاة النص في الوسط */
+}
+
+.contact-info {
+    display: flex; /* عرض المعلومات بشكل أفقي */
+    align-items: center; /* محاذاة العناصر في الوسط عموديًا */
+    margin-top: 20px; /* مسافة فوق المعلومات */
+    font-weight: bold; /* سمك الخط */
+    justify-content: center; /* محاذاة المعلومات في الوسط */
+}
+
+.phone-icon {
+    font-size: 24px; /* حجم رمز الهاتف */
+    color: #f9a8d4; /* لون الرمز */
+    margin-right: 10px; /* مسافة بين الرمز والرقم */
+}
+
+.phone-number {
+    font-size: 20px; /* حجم الرقم */
+    color: #555; /* لون الرقم */
+}

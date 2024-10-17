@@ -1,0 +1,177 @@
+/* HomePage.css */
+
+/* Main container to hold sidebar and content */
+.main-container {
+    display: flex;
+    flex-direction: row; /* تحديد اتجاه الفليكس */
+    background-color: #f4f4f4;
+}
+
+
+
+/* Content section */
+.content {
+    margin-left: 0px;
+    /* padding: 20px; */
+    flex-grow: 1;
+}
+
+/* Search bar styles */
+.search-bar {
+    display: flex; /* لجعل حقل الإدخال وزر البحث متجاورين */
+    width: 100%; /* اجعل شريط البحث يأخذ العرض الكامل */
+    margin-bottom: 20px; /* إضافة مسافة أسفل شريط البحث */
+}
+
+.search-bar input {
+    flex: 1; /* اجعل حقل الإدخال ينمو ليملأ المساحة المتاحة */
+    padding: 10px; /* إضافة حشوة داخل حقل الإدخال لتحسين تجربة المستخدم */
+    font-size: 16px; /* ضبط حجم الخط */
+    border: 1px solid #ccc; /* تصميم الحدود */
+    border-radius: 5px 0 0 5px; /* زوايا مدورة للجانب الأيسر */
+    outline: none; /* إزالة الحد الافتراضي عند التركيز */
+}
+
+.search-bar button {
+    padding: 10px 20px; /* حشوة الزر */
+    font-size: 16px; /* ضبط حجم الخط */
+    background-color: #ff5500; /* لون خلفية الزر */
+    color: white; /* لون نص الزر */
+    border: none; /* إزالة الحدود */
+    border-radius: 0 5px 5px 0; /* زوايا مدورة للجانب الأيمن */
+    cursor: pointer; /* تغيير المؤشر إلى يد */
+}
+
+.search-bar button:hover {
+    background-color: #0056b3; /* لون أغمق عند التمرير */
+}
+
+/* Styling for the main heading */
+h1 {
+    font-size: 28px; /* حجم الخط */
+    color: #333; /* لون الخط */
+    margin-bottom: 40px; /* المسافة أسفل العنوان */
+    font-weight: bold; /* خط عريض */
+}
+
+/* Grid of books */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* تقليل حجم الكارد */
+    grid-gap: 15px; /* تقليل المسافة بين الكتب */
+}
+
+/* كارد الكتب */
+.book-card {
+    background-color: white;
+    padding: 10px; /* تقليل الحشوة الداخلية للكارد */
+    border-radius: 8px; /* جعل الزوايا مدورة قليلاً */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px; /* المسافة أسفل كل كارد */
+    direction: rtl; /* دعم النصوص من اليمين إلى اليسار */
+    transition: box-shadow 0.3s ease; /* تأثير الانتقال عند التمرير */
+    height: auto; /* جعل ارتفاع الكارد تلقائي حسب المحتوى */
+    flex-shrink: 0; /* منع الكارد من الانكماش */
+}
+
+
+/* تأثير الهور على كارد الكتب */
+.book-card:hover {
+    box-shadow: 0 0 15px rgb(147, 174, 182); /* تأثير الإضاءة على hover */
+}
+
+/* Styling for the book title and description */
+.book-card h3, .book-card p {
+    direction: rtl; /* تأكيد أن العناوين والنصوص تتبع اتجاه الكتابة بالعربية */
+}
+
+/* Book cover styling */
+.book-cover {
+    width: 100%; /* عرض الصورة لملء الكارد بالكامل */
+    height: auto; /* جعل ارتفاع الصورة يتناسب مع عرضها */
+    object-fit: cover; /* الحفاظ على نسبة العرض والارتفاع الصحيحة */
+    border-radius: 5px;
+}
+
+h3 {
+    margin-top: 10px;
+    font-size: 16px; /* تصغير حجم خط العنوان */
+}
+
+p {
+    margin-top: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Styling the link inside the book-card to change color on hover */
+.book-card a {
+    text-decoration: none; /* إزالة خط تحت الرابط */
+    color: inherit; /* وراثة اللون من العنصر الأب */
+}
+
+.book-card a:hover h3 {
+    color: #ff6347; /* تغيير اللون عند التمرير على عنوان الكتاب */
+}
+
+/* Footer styling */
+.footer {
+    margin-top: auto; /* دفع الفوتر إلى الأسفل */
+    text-align: center; /* محاذاة النص في الوسط */
+    padding: 10px; /* مساحة داخلية */
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 150px; /* تقليل عرض الناف بار في الشاشات الصغيرة */
+    }
+
+    .content {
+        margin-left: 170px; /* ترك مساحة للناف بار الأصغر */
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* تقليل حجم الكارد في الشاشات الصغيرة */
+    }
+
+    .book-card {
+        width: 100%; /* اجعل عرض الكارد 100% ليملأ المساحة المتاحة */
+    }
+
+    h1 {
+        font-size: 24px; /* تقليل حجم العنوان */
+    }
+
+    .sidebar ul li {
+        margin: 20px 0; /* تقليل المسافة بين العناصر في الشريط الجانبي */
+    }
+
+    .search-bar {
+        flex-direction: column; /* تغيير اتجاه شريط البحث */
+    }
+
+    .search-bar input {
+        margin-bottom: 10px; /* إضافة مسافة أسفل حقل الإدخال */
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 80px; /* تقليل عرض الناف بار أكثر */
+        padding: 10px; /* تقليل الحشوة */
+    }
+
+    .content {
+        margin-left: 90px; /* ترك مساحة للناف بار الأصغر */
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* تعديل شبكة الكتب بشكل أكبر */
+    }
+
+    h1 {
+        font-size: 20px; /* تقليل حجم العنوان في الشاشات الأصغر */
+    }
+}
