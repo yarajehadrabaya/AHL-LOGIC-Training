@@ -77,6 +77,12 @@ h2 {
     color: #fcfcfcab;
     font-size:24px ;
   }
+
+
+
+  .error-message p {
+    color: #FF9500;
+  }
   
 /* Media Queries for smaller screens */
 @media screen and (max-width: 768px) {

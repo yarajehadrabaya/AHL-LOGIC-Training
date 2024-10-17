@@ -28,8 +28,8 @@ function LoginPage() {
       console.log("Response data:", data); // طباعة البيانات المستلمة
 
       if (response.ok) { // التحقق من نجاح الاستجابة
-        localStorage.setItem("token", data.token);
-        console.log("Token stored:", data.token); // تحقق من قيمة التوكن المخزنة
+        localStorage.setItem("token", data[0].token);
+        console.log("Token stored:", data[0].token); // تحقق من قيمة التوكن المخزنة
 
         localStorage.setItem("user", JSON.stringify(data));
         navigate("/"); // الانتقال إلى الصفحة الرئيسية
