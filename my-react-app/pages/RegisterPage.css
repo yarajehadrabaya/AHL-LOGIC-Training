@@ -1,84 +1,81 @@
-/* RegisterPage.css */
-
-/* Set the background color to match the homepage */
 .register-container {
-    display: flex;
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
-    height: 100vh; /* Full height */
-    background-color: #f4f4f4; /* Same as home page background */
-    font-family: Arial, sans-serif; /* Font style */
-  }
-  
-  /* Box for the registration form */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 70px;
+  background: #bb8f6b; /* fallback for old browsers */
+  background: linear-gradient(to top, #c6a478d3, #9e654dbd);
+  font-family: Arial, sans-serif;
+  position: relative; /* Ensure this is the reference for absolutely positioned elements */
+  min-height: 100vh; /* Ensure the container takes at least full viewport height */
+}
+
+.register-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #ff5500;
+  outline: none;
+}
+
+.register-button {
+  padding: 10px;
+  background-color: #ff5500;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.register-button:hover {
+  background-color: #e04e00;
+}
+
+@media (max-width: 600px) {
   .register-box {
-    background-color: white; /* White background for the box */
-    padding: 30px; /* Spacing inside the box */
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-    width: 100%; /* Full width */
-    max-width: 600px; /* Increased max width for a wider box */
+    width: 90%;
   }
-  
-  /* Title styling */
-  h1 {
-    margin-bottom: 20px; /* Spacing below the title */
-    text-align: center; /* Center the title */
-  }
-  
-  /* Label styling */
-  label {
-    margin: 10px 0 5px; /* Spacing for labels */
-    font-weight: bold; /* Bold text */
-  }
-  
-  /* Input field styling */
-  input {
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding for input */
-    margin-bottom: 15px; /* Spacing below input */
-    border: 1px solid #ccc; /* Border color */
-    border-radius: 10px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    transition: border 0.3s ease; /* Smooth transition for border */
-  }
-  
-  /* Focus effect for input fields */
-  input:focus {
-    border-color: #ff5500; /* Change border color on focus */
-    outline: none; /* Remove outline */
-  }
-  
-  /* Button styling */
-  .register-button {
-    padding: 10px; /* Padding for button */
-    background-color: #ff5500; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* Remove border */
-    border-radius: 10px; /* Rounded corners */
-    cursor: pointer; /* Change cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth transition */
-    width: 100%; /* Full width */
-  }
-  
-  /* Hover effect for button */
-  .register-button:hover {
-    background-color: #e04e00; /* Darker color on hover */
-  }
-  
-  /* Responsive design */
-  @media (max-width: 600px) {
-    .register-box {
-      width: 90%; /* Responsive box width */
-    }
-  }
-  /* Link styling */
+}
+
 .register-box p a {
-    color: #ff5500; /* Link color */
-    text-decoration: underline; /* Underline for links */
-    transition: color 0.3s ease; /* Smooth transition for hover effect */
-  }
-  
-  .register-box p a:hover {
-    color: #e04e00; /* Darker color on hover */
-  }
+  color: #ff5500;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.register-box p a:hover {
+  color: #e04e00;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+}

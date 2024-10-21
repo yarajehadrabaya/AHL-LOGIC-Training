@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './LoginPage.css';
 
 function LoginPage() {
-  const [username, setUsername] = useState(""); // استخدام useState لتخزين اسم المستخدم
-  const [password, setPassword] = useState(""); // استخدام useState لتخزين كلمة المرور
-  const navigate = useNavigate(); // استدعاء useNavigate كدالة
+  const [username, setUsername] = useState(""); 
+  const [password, setPassword] = useState(""); 
+  const navigate = useNavigate(); 
+  const location = useLocation();
+  const [successMessage, setSuccessMessage] = useState('');
+
+  useEffect(() => {
+    if (location.state?.fromRegister) {
+      setSuccessMessage("Account created successfully! Please log in.");
+    }
+  }, [location.state]);
 
   async function login() {
     const myHeaders = new Headers();
@@ -25,21 +33,32 @@ function LoginPage() {
     try {
       const response = await fetch("https://ahllibrary.azurewebsites.net/api/Account/SignIn", requestOptions);
       const data = await response.json();
-      console.log("Response data:", data); // طباعة البيانات المستلمة
 
-      if (response.ok) { // التحقق من نجاح الاستجابة
+      if (response.ok) {
+        // تخزين البيانات في localStorage
         localStorage.setItem("token", data[0].token);
-        console.log("Token stored:", data[0].token); // تحقق من قيمة التوكن المخزنة
+        localStorage.setItem("user", JSON.stringify(data[0]));
+        localStorage.setItem("userId", data[0].userId);
+        
+        // عرض القيم المخزنة في localStorage
+        console.log("User ID stored in localStorage:", data[0].userId);
+        console.log("Token stored in localStorage:", data[0].token);
 
-        localStorage.setItem("user", JSON.stringify(data));
-        navigate("/"); // الانتقال إلى الصفحة الرئيسية
+        // جملة طباعة للتحقق من نجاح عملية تسجيل الدخول
+        console.log("Login successful for user:", username);
+        
+        // توجيه المستخدم إلى الصفحة الرئيسية
+        navigate("/");
+        
+        // إعادة تحميل الصفحة بعد تسجيل الدخول
+        window.location.reload(); 
       } else {
-        console.error("Login failed:", data); // طباعة رسالة الخطأ في حال فشل تسجيل الدخول
-        alert(data.message || "Login failed"); // عرض رسالة الخطأ
+        console.error("Login failed:", data.message || "Unknown error");
+        alert(data.message || "Login failed");
       }
     } catch (error) {
-      console.error("An error occurred:", error); // طباعة الخطأ في حال وجود مشكلة في الطلب
-      alert("An error occurred. Please try again."); // عرض رسالة للمستخدم
+      console.error("An error occurred:", error);
+      alert("An error occurred. Please try again.");
     }
   }
 
@@ -47,13 +66,15 @@ function LoginPage() {
     <div className="login-container">
       <div className="login-box">
         <h1>Login</h1>
+        {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+
         <div>
           <label htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
             placeholder="Username"
-            onChange={(event) => setUsername(event.target.value)} // تحديث الحالة باستخدام setUsername
+            onChange={(event) => setUsername(event.target.value)} 
           />
 
           <label htmlFor="password">Password</label>
@@ -61,7 +82,7 @@ function LoginPage() {
             type="password"
             id="password"
             placeholder="Password"
-            onChange={(event) => setPassword(event.target.value)} // تحديث الحالة باستخدام setPassword
+            onChange={(event) => setPassword(event.target.value)} 
           />
 
           <button className="login-button" onClick={login}>Login</button>
@@ -74,3 +95,4 @@ function LoginPage() {
 }
 
 export default LoginPage;
+

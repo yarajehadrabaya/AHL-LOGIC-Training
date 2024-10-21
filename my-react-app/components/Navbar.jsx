@@ -124,6 +124,12 @@
 
 
 
+
+
+
+
+
+
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import $ from 'jquery'; // استيراد jQuery
@@ -136,6 +142,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // فحص حالة تسجيل الدخول عند تحميل الصفحة
     const token = localStorage.getItem("token");
     setLoggedIn(token !== null); // تحديث الحالة بناءً على وجود التوكن
 
@@ -172,7 +179,7 @@ function Navbar() {
       window.onscroll = null;
     };
   }, []); // استخدام [] لضمان تنفيذ الكود مرة واحدة فقط عند تحميل المكون
-  
+
   // Function to check if the user is an admin
   function isAdmin() {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -183,8 +190,9 @@ function Navbar() {
   function logout() {
     localStorage.removeItem("token"); // مسح التوكن
     localStorage.removeItem("user"); // مسح معلومات المستخدم (اختياري)
+    localStorage.removeItem("userId");
     setLoggedIn(false); // تحديث حالة تسجيل الدخول
-    navigate("/login"); // الانتقال إلى صفحة تسجيل الدخول
+    navigate("/"); // الانتقال إلى صفحة تسجيل الدخول
   }
 
   return (
@@ -201,25 +209,27 @@ function Navbar() {
             <i className="fas fa-times"></i>
           </div>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
+          
         
           {loggedIn && isAdmin() && (
             <>
-              <li><Link to="/add_book">Add Book</Link></li>
-              <li><Link to="/">Delete Book</Link></li>
-              <li><Link to="/">Update Book</Link></li>
+              <li><Link to="/book_list">Manage the books</Link></li>
+              
             </>
           )}
 
           {loggedIn ? (
             <>
+              <li><Link to="/my_books">MyBooks Page</Link></li>
               <li><Link to="/profile">Profile</Link></li>
               <li><Link to="/" onClick={logout}>Logout</Link></li>
+              <li><Link to="/about">About</Link></li>
             </>
           ) : (
             <>
               <li><Link to="/login">Login</Link></li>
               <li><Link to="/register">Register</Link></li>
+              <li><Link to="/about">About</Link></li>
             </>
           )}
         </ul>
@@ -229,12 +239,9 @@ function Navbar() {
         }}>
           <i className="fas fa-bars"></i>
         </div>
-        <div className="logo"></div>
-        <div></div>
-        <div></div>
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+export default Navbar; 

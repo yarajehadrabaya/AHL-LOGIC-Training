@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 
 const HomePage = () => {
-  const [books, setBooks] = useState([]); 
+  const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [isNavbarOpen, setNavbarOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); // استخدام useNavigate للتنقل
 
   const BASE_URL = 'https://ahllibrary.azurewebsites.net'; // URL الأساسي
 
@@ -23,7 +24,7 @@ const HomePage = () => {
         setBooks(data);
         setFilteredBooks(data);
       } catch (error) {
-        setErrorMessage("An error occurred while fetching data:" + error.message);
+        setErrorMessage("An error occurred while fetching data: " + error.message);
       }
     };
 
@@ -32,7 +33,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (searchTerm) {
-      const filtered = books.filter(book => 
+      const filtered = books.filter(book =>
         book.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredBooks(filtered);
@@ -53,6 +54,18 @@ const HomePage = () => {
     }
   };
 
+  // دالة التحقق من تسجيل الدخول
+  const handleBorrowClick = (bookId) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("You must be logged in to borrow a book."); // عرض رسالة للمستخدم
+      navigate("/login"); // توجيه المستخدم إلى صفحة تسجيل الدخول
+    } else {
+      navigate(`/book/${bookId}`); // التوجه إلى صفحة الكتاب
+    }
+  };
+
   return (
     <div>
       {/* <Navbar userType="student" toggleNavbar={toggleNavbar} isOpen={isNavbarOpen} /> */}
@@ -63,7 +76,7 @@ const HomePage = () => {
             <img src="/img/logo.png" alt="Site Logo" />
           </div>
           <h2 className="text1">Unlock the magic of reading..</h2>
-          <p className="text">explore our diverse collection of books!</p>
+          <p className="text">Explore our diverse collection of books!</p>
           <div className="search-bar">
             <input
               type="text"
@@ -71,18 +84,19 @@ const HomePage = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyPress={handleKeyPress}
+              
             />
             <i className="search-icon fas fa-search"></i> 
           </div>
 
-          {errorMessage && <p className="error-message">{errorMessage}</p>} 
+          {/* {errorMessage && <p className="error-message">{errorMessage}</p>}  */}
         </div>
 
         <section className="book-categories" id="book-categories">
           <div className="container">
             <div className="title">
-              <h2>Book Categories</h2>
-              <p>Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et...</p>
+              <h2  style={{ color: '#cc9240' }}>Book Categories</h2>
+              {/* <p>Discover inspiration and change with our curated books – unlock new horizons and embark on limitless growth!</p> */}
             </div>
 
             <div className="cards">
@@ -129,31 +143,99 @@ const HomePage = () => {
         <section className="our-books" id="books">
           <div className="container">
             <div className="tittle">
-              <h2>Our BOOKS</h2>
+              <h2   style={{ color: '#cc9240' }}>Our BOOKS</h2>
             </div>
 
-            <div className="books">
-              {filteredBooks.length > 0 ? (
-                filteredBooks.map(book => (
-                  <div key={book.id} className="course">
-                    <Link to={`/book/${book.id}`}>
-                      <img src={`${BASE_URL}/${book.photoPath}`} alt={book.title} /> {/* دمج الـ URL الأساسي مع مسار الصورة */}
-                      <p className="aouther">{book.author}</p>
-                      <h3>{book.title}</h3>
-                    </Link>
-                    <Link to={`/book/${book.id}`}>
-                      <button>Borrow it</button>
-                    </Link>
+              <div className="books">
+                {filteredBooks.length > 0 ? (
+                  filteredBooks.map(book => (
+                    <div key={book.id} className="course">
+                      <Link to={`/book/${book.id}`}>
+                      <img
+                  src={book.photoPath && book.photoPath.trim() !== "" ? `${BASE_URL}/${book.photoPath}` : "/img/default-book.png"}
+                  alt="Book Cover"
+                  className="card-img-top img-fluid"
+                  onError={(e) => {
+                    e.target.onerror = null; // لمنع حدوث حلقة لا نهائية
+                    e.target.src = "/img/default-book.png"; // تعيين الصورة الافتراضية
+                  }}
+                />
+
+                        <p className="author">{book.author}</p>
+                        <h3>{book.title}</h3>
+                      </Link>
+                      <button onClick={() => handleBorrowClick(book.id)}>Borrow it</button>
+                    </div>
+                  ))
+                ) : (
+                  <div className="error-container">
+                    <p className="error-message">{errorMessage}</p>
                   </div>
-                ))
-              ) : (
-                <div className="error-container">
-                  <p className="error-message">{errorMessage}</p>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+
           </div>
         </section>
+        <section class="Our-testimonials" id="testimonial">
+        <div class="container">
+            <div class="tittle">
+                <h2  style={{ color: '#cc9240' }}>Our Testimonials</h2>
+                <div>
+                    <p>Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu
+                        sit
+                        dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in.</p>
+
+                    <button>View All</button>
+                </div>
+                    </div>
+                    <div class="cards">
+                        <div class="card">
+                            <p>My experience with the book borrowing system has been fantastic! I can now browse a wide range of books from the comfort of my home without having to go to the library. The customer support was very helpful, 
+                              and I received quick responses to my inquiries. I highly recommend trying it!</p>
+                            <div class="heading">
+                                <div class="person">
+                                    <img src="/img/testimonial/mohammad.jpg" alt="Sarah"/>
+                                    <p>Sarah L</p>
+                                </div>
+                                <button>Read Full Story</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <p>I really loved my experience using the book borrowing site! I faced some challenges initially, but the support team was incredibly professional and helped me out quickly. 
+                              The ability to rate books makes choosing easier, and I've been borrowing books regularly now!</p>
+                            <div class="heading">
+                                <div class="person">
+                                    <img src="/img/testimonial/jason.png" alt="Jason"/>
+                                    <p>Jason M</p>
+                                </div>
+                                <button>Read Full Story</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <p>I can't say enough good things about this book borrowing platform! It has made accessing books so convenient and hassle-free. The interface is intuitive, and I appreciate the variety of genres available.  
+                              This service has truly enhanced my reading experience</p>
+                            <div class="heading">
+                                <div class="person">
+                                    <img src="/img/testimonial/sam.jpg" alt="Emily"/>
+                                    <p>Emily R</p>
+                                </div>
+                                <button>Read Full Story</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <p>This system is a true revolution in the library world! The service is excellent, and books are always available. I've borrowed many books and enjoyed every moment. The additional features like a personal reading 
+                              list make it easy to keep track of what I’m reading. Thank you for this amazing service!</p>
+                            <div class="heading">
+                                <div class="person">
+                                    <img src="/img/testimonial/michael.png" alt="Michael"/>
+                                    <p>Michael K</p>
+                                </div>
+                                <button>Read Full Story</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 </section>
       </div>
     </div>
   );

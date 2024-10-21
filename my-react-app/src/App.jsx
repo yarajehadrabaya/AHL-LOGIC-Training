@@ -6,9 +6,11 @@ import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";  
 import BookDetailPage from "../pages/BookDetailPage"; 
 import ProfilePage from "../pages/ProfilePage";  
-import AddBook from "../pages/AddBookPage";
-
+import BookList from "../pages/BookListPage"; 
+import MyBooks from "../pages/MyBooksPage"; 
 import Navbar from "../components/Navbar"; 
+import Footer from "../components/Footer";  // استيراد الفوتر
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [userType, setUserType] = useState(null); // استخدام الحالة لتحديد نوع المستخدم
@@ -16,26 +18,23 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar /> {/* إضافة Navbar هنا ليظهر في جميع الصفحات */}
-
+      <ToastContainer />
       <Routes>
-        {/* المسارات العامة */}
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage setUserType={setUserType} />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/book/:id" element={<BookDetailPage />} /> {/* إضافة معرف الكتاب */}
+        
+        <Route path="/book_list" element={<BookList />} /> 
 
-        {/* المسارات الخاصة */}
         <Route path="/profile" element={<ProfilePage />} /> 
 
-        {/* إضافة مسار AddBook وظهوره فقط إذا كان المستخدم admin */}
-        <Route path="/add_book" element={<AddBook />} />
+        <Route path="/my_books" element={<MyBooks />} />
       </Routes>
+      <Footer /> 
     </BrowserRouter>
   );
 }
 
 export default App;
-
-
-

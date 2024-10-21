@@ -1,6 +1,6 @@
-// RegisterPage.jsx
-
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // استيراد useNavigate
 import './RegisterPage.css';
 
 function RegisterPage() {
@@ -9,38 +9,32 @@ function RegisterPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const navigate = useNavigate(); // استخدام useNavigate
 
     const handleRegister = async (e) => {
-        e.preventDefault(); // منع إعادة تحميل الصفحة
-        setError(''); // إعادة تعيين رسالة الخطأ
-        setSuccessMessage(''); // إعادة تعيين رسالة النجاح
+        e.preventDefault();
+        setError('');
+        setSuccessMessage('');
 
         try {
-            const response = await fetch('https://libraryforstd-d5epbbadfwc3hygk.eastasia-01.azurewebsites.net/api/Account/CreateUser', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, fullname, password }),
+            const response = await axios.post('https://ahllibrary.azurewebsites.net/api/Account/CreateUser', {
+                username,
+                fullname,
+                password
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Registration failed!');
-            }
+            console.log('Registration successful:', response.data);
 
-            const data = await response.json();
-            console.log('Registration successful:', data);
-
-            // هنا يمكنك تخزين التوكين إذا تم إرجاعه
-            localStorage.setItem('token', data.token); // استبدل 'data.token' بالتوكين الصحيح من الاستجابة
-
-            // رسالة نجاح
+            localStorage.setItem("token", response.data.token);
             setSuccessMessage('Registration successful! You can now log in.');
-            // هنا يمكنك تنفيذ ما تريد بعد نجاح التسجيل مثل توجيه المستخدم
 
+            // نقل المستخدم إلى صفحة تسجيل الدخول مع تمرير حالة بعد التسجيل
+            setTimeout(() => {
+                navigate('/login', { state: { fromRegister: true } });
+            }, 2000); // نقل المستخدم بعد 2 ثانية
         } catch (error) {
-            setError(error.message);
+            console.error('Error during registration:', error);
+            setError(error.response?.data?.message || 'Registration failed!');
         }
     };
 
@@ -53,13 +47,34 @@ function RegisterPage() {
                 
                 <form onSubmit={handleRegister}>
                     <label htmlFor="username">Username</label>
-                    <input type="text" placeholder="Username" id="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        id="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
                     
                     <label htmlFor="fullname">Full Name</label>
-                    <input type="text" placeholder="Full Name" id="fullname" value={fullname} onChange={(e) => setFullname(e.target.value)} required />
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        id="fullname"
+                        value={fullname}
+                        onChange={(e) => setFullname(e.target.value)}
+                        required
+                    />
                     
                     <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="Password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
                     
                     <button className="register-button" type="submit">Register</button>
                 </form>

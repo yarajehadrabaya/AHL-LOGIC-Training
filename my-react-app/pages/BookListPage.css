@@ -1,0 +1,111 @@
+.body{
+    min-height: 100vh; /* ارتفاع الصفحة بالكامل */
+    background: linear-gradient(to bottom, #d3d3d285, #ffffff); /* تدرج لوني من البيج إلى الأبيض */
+}
+
+
+
+.book-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px;
+    margin-top: 60px; /* هامش علوي لتجنب تداخل المحتوى مع الناف بار */
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.book-table th, .book-table td {
+    border: 1px solid #ddd;
+    padding: 10px; /* تقليل الحشو */
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+}
+
+.book-table th {
+    background-color: #4CAF50; /* لون رأس الجدول */
+    color: white; /* لون النص في الرأس */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.book-table td {
+    background-color: #f9f9f9; /* خلفية افتراضية للصفوف */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* انتقال ناعم لتغيير اللون والظل */
+}
+
+.book-row:hover {
+    background-color: #e1f5fe; /* لون خلفية عند التمرير */
+    box-shadow: 0 0 10px rgb(211, 174, 7); /* إضافة جلو أخضر عند التمرير */
+    transform: scale(1.01); /* تكبير خفيف عند التمرير */
+}
+
+.book-row:nth-child(even) {
+    background-color: #f2f2f2; /* لون مختلف لكل صف زوجي */
+}
+
+.book-row:nth-child(odd) {
+    background-color: #fafafa; /* لون مختلف لكل صف فردي */
+}
+
+.book-table td, .book-table th {
+    border-bottom: 1px solid #ddd;
+}
+
+.book-row.deleted {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.edit-button, .delete-button, .add-button {
+    border-radius: 5px; /* حواف مستديرة */
+    padding: 10px; /* حجم متناسق */
+    font-size: 14px; /* حجم النص متناسق */
+    color: white; /* لون النص */
+    text-align: center; /* محاذاة النص داخل الزر في المنتصف */
+    transition: background-color 0.3s, box-shadow 0.3s; /* انتقال سلس عند تغيير اللون والظل */
+    border: 2px solid transparent; /* حد شفاف ليتناسب مع الخلفية */
+}
+
+.edit-button {
+    background-color: rgb(76, 76, 195);
+}
+
+.delete-button {
+    background-color: rgb(247, 64, 3);
+}
+
+.add-button {
+    background-color: green;
+    padding: 12px; /* زيادة حجم زر الإضافة */
+}
+
+.edit-button:hover, .delete-button:hover, .add-button:hover {
+    box-shadow: 0 0 10px rgba(11, 11, 11, 0.599); /* جلو حول الأزرار عند التمرير */
+    border-color: transparent; /* إزالة الحد الشفاف */
+}
+
+.add-book-form {
+    margin-top: 30px;
+}
+
+.add-book-form input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+}
+
+@media (max-width: 768px) {
+    .edit-button, .delete-button, .add-button {
+        width: 100%; /* جعل الأزرار تمتد على العرض الكامل في الأجهزة الصغيرة */
+    }
+}
