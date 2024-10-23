@@ -365,7 +365,7 @@ const HomePage = () => {
  {/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
              
          {/* Start map section */}
-          <MapContainer center={position} zoom={10} scrollWheelZoom={false} style={{ height: '100vh', width: '100%' }}> {/* قم بتعديل قيمة الزوم هنا */}
+          <MapContainer center={position} zoom={10} scrollWheelZoom={false} touchZoom={false}  style={{ height: '100vh', width: '100%' }}> {/* قم بتعديل قيمة الزوم هنا */}
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
