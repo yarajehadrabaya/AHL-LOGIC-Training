@@ -1,0 +1,80 @@
+/*  */
+/* AboutPage.css */
+
+/* قسم المحتوى */
+.about-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #e9e8e8;
+    height: 100vh;
+}
+
+.about-section {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.image-container {
+    margin-top: 190px;
+    width: 500px;
+    height: auto;
+    margin-right: 20px;
+    margin-bottom: 120px;
+}
+
+.profile-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: none;
+}
+
+.text-container {
+    margin-top: 190px;
+    flex: 1;
+    margin-bottom: 120px;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.divider {
+    width: 60px;
+    height: 4px;
+    background-color: #ae382c;
+    margin: 10px auto;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    text-align: center;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.phone-icon {
+    font-size: 24px;
+    color: #f9a8d4;
+    margin-right: 10px;
+}
+
+.phone-number {
+    font-size: 20px;
+    color: #555;
+}
